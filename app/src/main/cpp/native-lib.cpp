@@ -41,9 +41,24 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
     int len = 10;
     int* arr = ArrayUtil::create_random_data(len,0,10);
     int* arr1 = ArrayUtil::copy_array_data(arr,len);
+    int* arr2 = ArrayUtil::copy_array_data(arr,len);
+    int* arr3 = ArrayUtil::copy_array_data(arr,len);
+    int* arr4 = ArrayUtil::copy_array_data(arr,len);
+    int* arr5 = ArrayUtil::copy_array_data(arr,len);
     ArrayUtil::sort_array("shellInsertSort",SortUtil::shellInsertSort,arr, len);
     ArrayUtil::sort_array("bubbleSort",SortUtil::bubbleSort,arr1, len);
+    ArrayUtil::sort_array("selectSort",SortUtil::selectSort,arr2, len);
+    ArrayUtil::sort_array("insertSort",SortUtil::insertSort,arr3, len);
+    ArrayUtil::sort_array("insertSort",SortUtil::insertOptSort,arr4, len);
+    ArrayUtil::sort_array_second("QuickSort",SortUtil::QuickSort,arr5, 0,len);
 
+
+    delete []arr;
+    delete []arr1;
+    delete []arr2;
+    delete []arr3;
+    delete []arr4;
+    delete []arr5;
 //    testLinkedList();
     return env->NewStringUTF(hello.c_str());
 }
