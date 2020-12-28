@@ -2,6 +2,8 @@
 #include <string>
 #include <android/log.h>
 #include "LinkedList.hpp"
+#include "ArrayUtil.hpp"
+#include "SortUtil.hpp"
 
 void testLinkedList(){
     //测试代码
@@ -36,7 +38,11 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
         jobject /* this */) {
     std::string hello = "Hello from C++";
 
-    testLinkedList();
+    int len = 20000;
+    int* arr = ArrayUtil::create_random_data(len,0,10);
+    ArrayUtil::sort_array("shellInsertSort",SortUtil::shellInsertSort,arr, len);
+
+//    testLinkedList();
     return env->NewStringUTF(hello.c_str());
 }
 
