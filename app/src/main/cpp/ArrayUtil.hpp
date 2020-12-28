@@ -14,7 +14,14 @@ namespace ArrayUtil{
         return arr;
     }
 
+    int * copy_array_data(int * arr,int len){
+        int * tem = new int[len];
+        memcpy(tem,arr, sizeof(int)*len);
+        return tem;
+    }
+
     void sort_array(char* methodName,void(*callSortMethod)(int*,int),int* arr,int len){
+        __android_log_print(ANDROID_LOG_ERROR,"TAG","排序开始");
         size_t start = clock();
         callSortMethod(arr,len);
         size_t end = clock();
@@ -24,5 +31,6 @@ namespace ArrayUtil{
         {
             __android_log_print(ANDROID_LOG_ERROR,"TAG","%d ",arr[i]);
         }
+        __android_log_print(ANDROID_LOG_ERROR,"TAG","排序结束");
     }
 }

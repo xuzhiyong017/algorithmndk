@@ -38,9 +38,11 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
         jobject /* this */) {
     std::string hello = "Hello from C++";
 
-    int len = 20000;
+    int len = 10;
     int* arr = ArrayUtil::create_random_data(len,0,10);
+    int* arr1 = ArrayUtil::copy_array_data(arr,len);
     ArrayUtil::sort_array("shellInsertSort",SortUtil::shellInsertSort,arr, len);
+    ArrayUtil::sort_array("bubbleSort",SortUtil::bubbleSort,arr1, len);
 
 //    testLinkedList();
     return env->NewStringUTF(hello.c_str());
