@@ -11,6 +11,16 @@
 
 void testTreeNode();
 
+template <typename T>
+void preOrderTraverse(TreeNode<T> *pNode,void(*visit)(T));
+
+template <typename T>
+void midOrderTraverse(TreeNode<char> *pNode,void(*visit)(T));
+
+template <typename T>
+void lastOrderTraverse(TreeNode<T> *pNode, void (*visit)(T));
+
+
 void testArrayStack(){
     ArrayStack<int> stack;
     for (int i = 0; i < 11; ++i) {
@@ -114,6 +124,9 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
     return env->NewStringUTF(hello.c_str());
 }
 
+void visitPNode(char data){
+    LOGE("%c",data);
+}
 void testTreeNode() {
     TreeNode<char>* F = new TreeNode<char>('F',NULL,NULL);
     TreeNode<char>* E = new TreeNode<char>('E',NULL,NULL);
@@ -122,7 +135,54 @@ void testTreeNode() {
     TreeNode<char>* B = new TreeNode<char>('B',D,E);
     TreeNode<char>* A = new TreeNode<char>('A',B,C);
 
-    //
+    LOGE("----------前序遍历-------------")
+    preOrderTraverse(A,visitPNode);
+    LOGE("----------中序遍历-------------")
+    midOrderTraverse(A,visitPNode);
+    LOGE("----------后序遍历-------------")
+    lastOrderTraverse(A,visitPNode);
+}
+
+
+template <typename T>
+void lastOrderTraverse(TreeNode<T> *pNode, void (*visit)(T)) {
+    //首先
+    if(pNode){
+        //首先访问左节点
+        lastOrderTraverse(pNode->left,visit);
+        //然后访问右节点
+        lastOrderTraverse(pNode->right,visit);
+        //最后访问根节点
+        visit(pNode->data);
+    }
+}
+
+//前序遍历  ABDECF
+template <typename T>
+void preOrderTraverse(TreeNode<T> *pNode,void(*visit)(T)) {
+    //首先
+    if(pNode){
+        //首先访问根节点
+        visit(pNode->data);
+        //然后访问左节点
+        preOrderTraverse(pNode->left,visit);
+        //最后访问右节点
+        preOrderTraverse(pNode->right,visit);
+    }
+}
+
+//中序遍历  DBEACF
+template <typename T>
+void midOrderTraverse(TreeNode<char> *pNode,void(*visit)(T)) {
+//首先
+    if(pNode){
+        //首先访问左节点
+        midOrderTraverse(pNode->left,visit);
+        //然后访问根节点
+        visit(pNode->data);
+        //最后访问右节点
+        midOrderTraverse(pNode->right,visit);
+    }
 }
 
 

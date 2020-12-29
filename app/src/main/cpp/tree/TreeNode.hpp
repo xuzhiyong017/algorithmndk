@@ -6,12 +6,13 @@
 #define ALGORITHMNDK_TREENODE_HPP
 template <typename T>
 class TreeNode{
-    T data;
-    TreeNode<T> *left = NULL;
-    TreeNode<T> *right = NULL;
 public:
     TreeNode(T data,TreeNode<T> *left,TreeNode<T> *right):data(data),left(left),right(right){
 
     }
+
+    T data;
+    TreeNode<T> *left = NULL;
+    TreeNode<T> *right = NULL;
 };
 #endif //ALGORITHMNDK_TREENODE_HPP
