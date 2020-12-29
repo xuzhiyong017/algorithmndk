@@ -5,12 +5,38 @@
 #include "ArrayUtil.hpp"
 #include "SortUtil.hpp"
 #include "structdata/ArrayStack.hpp"
+#include "structdata/LinkStack.hpp"
 
 void testArrayStack(){
     ArrayStack<int> stack;
     for (int i = 0; i < 11; ++i) {
         stack.push(i);
     }
+
+    while (!stack.isEmpty()){
+        __android_log_print(ANDROID_LOG_ERROR,"TAG","stack %d",stack.pop());
+    }
+}
+
+void testLinkStack(){
+    LinkStack<int> stack;
+
+    stack.push(0);
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+
+
+    stack.pop();
+    stack.pop();
+    stack.push(4);
+    stack.push(5);
+
+    stack.pop();
+
+//    for (int i = 0; i < 11; ++i) {
+//        stack.push(i);
+//    }
 
     while (!stack.isEmpty()){
         __android_log_print(ANDROID_LOG_ERROR,"TAG","stack %d",stack.pop());
@@ -73,7 +99,8 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
     std::string hello = "Hello from C++";
 //    testLinkedList();
 //    testSortMethod();
-        testArrayStack();
+//    testArrayStack();
+        testLinkStack();
     return env->NewStringUTF(hello.c_str());
 }
 
