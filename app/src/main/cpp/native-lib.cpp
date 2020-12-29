@@ -4,6 +4,18 @@
 #include "LinkedList.hpp"
 #include "ArrayUtil.hpp"
 #include "SortUtil.hpp"
+#include "structdata/ArrayStack.hpp"
+
+void testArrayStack(){
+    ArrayStack<int> stack;
+    for (int i = 0; i < 11; ++i) {
+        stack.push(i);
+    }
+
+    while (!stack.isEmpty()){
+        __android_log_print(ANDROID_LOG_ERROR,"TAG","stack %d",stack.pop());
+    }
+}
 
 void testLinkedList(){
     //测试代码
@@ -28,16 +40,9 @@ void testLinkedList(){
     for (int i = 0; i < linkedList.size(); ++i) {
         __android_log_print(ANDROID_LOG_ERROR,"TAG","%d",linkedList.get(i));
     }
-
-
 }
 
-extern "C" JNIEXPORT jstring JNICALL
-Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
-        JNIEnv* env,
-        jobject /* this */) {
-    std::string hello = "Hello from C++";
-
+void testSortMethod(){
     int len = 10;
     int* arr = ArrayUtil::create_random_data(len,0,10);
     int* arr1 = ArrayUtil::copy_array_data(arr,len);
@@ -59,7 +64,16 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
     delete []arr3;
     delete []arr4;
     delete []arr5;
+}
+
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
+        JNIEnv* env,
+        jobject /* this */) {
+    std::string hello = "Hello from C++";
 //    testLinkedList();
+//    testSortMethod();
+        testArrayStack();
     return env->NewStringUTF(hello.c_str());
 }
 
