@@ -161,6 +161,16 @@ int getTreeDepth(TreeNode<char> *pNode) {
     return std::max(left,right) + 1;
 }
 
+bool isBalanceTree(TreeNode<char> *pNode) {
+    if(pNode == NULL){
+        return true;
+    }
+
+    int left = getTreeDepth(pNode->left);
+    int right = getTreeDepth(pNode->right);
+    return std::abs(left - right) <= 1 && isBalanceTree(pNode->left) && isBalanceTree(pNode->right);
+}
+
 void testTreeNode() {
     TreeNode<char>* F = new TreeNode<char>('F',NULL,NULL);
     TreeNode<char>* E = new TreeNode<char>('E',NULL,NULL);
@@ -182,6 +192,7 @@ void testTreeNode() {
     LOGE("----------获取树的深度-------------");
     int depth = getTreeDepth(A);
     LOGE("----------获取树的深度 %d -------------",depth);
+    LOGE("----------是否是平衡二叉树%d -------------",isBalanceTree(A));
 }
 
 
