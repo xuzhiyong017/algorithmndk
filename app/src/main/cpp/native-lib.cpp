@@ -7,6 +7,9 @@
 #include "structdata/ArrayStack.hpp"
 #include "structdata/LinkStack.hpp"
 #include "question/hannuota.hpp"
+#include "tree/TreeNode.hpp"
+
+void testTreeNode();
 
 void testArrayStack(){
     ArrayStack<int> stack;
@@ -106,8 +109,20 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
 //    testSortMethod();
 //    testArrayStack();
 //    testLinkStack();
-     testHannuota();
+//     testHannuota();
+        testTreeNode();
     return env->NewStringUTF(hello.c_str());
+}
+
+void testTreeNode() {
+    TreeNode<char>* F = new TreeNode<char>('F',NULL,NULL);
+    TreeNode<char>* E = new TreeNode<char>('E',NULL,NULL);
+    TreeNode<char>* D = new TreeNode<char>('D',NULL,NULL);
+    TreeNode<char>* C = new TreeNode<char>('C',NULL,F);
+    TreeNode<char>* B = new TreeNode<char>('B',D,E);
+    TreeNode<char>* A = new TreeNode<char>('A',B,C);
+
+    //
 }
 
 
