@@ -151,6 +151,16 @@ void levelOrderTraverse(TreeNode<T> *pNode, void (*visit)(T)) {
 
 }
 
+int getTreeDepth(TreeNode<char> *pNode) {
+    if(pNode == NULL){
+        return 0;
+    }
+
+    int left = getTreeDepth(pNode->left);
+    int right = getTreeDepth(pNode->right);
+    return std::max(left,right) + 1;
+}
+
 void testTreeNode() {
     TreeNode<char>* F = new TreeNode<char>('F',NULL,NULL);
     TreeNode<char>* E = new TreeNode<char>('E',NULL,NULL);
@@ -168,6 +178,10 @@ void testTreeNode() {
 
     LOGE("----------层次遍历-------------");
     levelOrderTraverse(A,visitPNode);
+
+    LOGE("----------获取树的深度-------------");
+    int depth = getTreeDepth(A);
+    LOGE("----------获取树的深度 %d -------------",depth);
 }
 
 
