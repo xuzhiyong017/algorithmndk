@@ -97,15 +97,26 @@ namespace SortUtil{
         return high;
     }
 
-    void QuickSort(int* arr,int low,int high){
+    void QuickSort_(int* arr,int low,int high){
         if(low < high)
         {
             int center = indexArrayPos(arr,low,high);
-            QuickSort(arr,low,center -1);
-            QuickSort(arr,center+1,high);
+            QuickSort_(arr,low,center -1);
+            QuickSort_(arr,center+1,high);
         }
 
     }
+
+    void QuickSort(int* arr,int len){
+        QuickSort_(arr,0,len -1);
+    }
+
+
+
+
+
+    //归并排序
+
 
 }
 

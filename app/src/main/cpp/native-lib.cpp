@@ -50,7 +50,7 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
     ArrayUtil::sort_array("selectSort",SortUtil::selectSort,arr2, len);
     ArrayUtil::sort_array("insertSort",SortUtil::insertSort,arr3, len);
     ArrayUtil::sort_array("insertSort",SortUtil::insertOptSort,arr4, len);
-    ArrayUtil::sort_array_second("QuickSort",SortUtil::QuickSort,arr5, 0,len);
+    ArrayUtil::sort_array("QuickSort",SortUtil::QuickSort,arr5, len);
 
 
     delete []arr;
