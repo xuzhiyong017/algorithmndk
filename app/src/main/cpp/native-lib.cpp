@@ -7,6 +7,7 @@
 #include "structdata/ArrayStack.hpp"
 #include "structdata/LinkStack.hpp"
 #include "question/hannuota.hpp"
+#include <queue>
 #include "tree/TreeNode.hpp"
 
 void testTreeNode();
@@ -127,6 +128,29 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
 void visitPNode(char data){
     LOGE("%c",data);
 }
+
+template <typename T>
+void levelOrderTraverse(TreeNode<T> *pNode, void (*visit)(T)) {
+    if(pNode == NULL){
+        return;
+    }
+    std::queue<TreeNode<T>*> nodeQ;
+    nodeQ.push(pNode);
+    while (!nodeQ.empty()){
+        TreeNode<T> *front = nodeQ.front();
+        nodeQ.pop();
+        visit(front->data);
+
+        if(front->left){
+            nodeQ.push(front->left);
+        }
+        if(front->right){
+            nodeQ.push(front->right);
+        }
+    }
+
+}
+
 void testTreeNode() {
     TreeNode<char>* F = new TreeNode<char>('F',NULL,NULL);
     TreeNode<char>* E = new TreeNode<char>('E',NULL,NULL);
@@ -135,12 +159,15 @@ void testTreeNode() {
     TreeNode<char>* B = new TreeNode<char>('B',D,E);
     TreeNode<char>* A = new TreeNode<char>('A',B,C);
 
-    LOGE("----------前序遍历-------------")
+    LOGE("----------前序遍历-------------");
     preOrderTraverse(A,visitPNode);
-    LOGE("----------中序遍历-------------")
+    LOGE("----------中序遍历-------------");
     midOrderTraverse(A,visitPNode);
-    LOGE("----------后序遍历-------------")
+    LOGE("----------后序遍历-------------");
     lastOrderTraverse(A,visitPNode);
+
+    LOGE("----------层次遍历-------------");
+    levelOrderTraverse(A,visitPNode);
 }
 
 
@@ -184,5 +211,7 @@ void midOrderTraverse(TreeNode<char> *pNode,void(*visit)(T)) {
         midOrderTraverse(pNode->right,visit);
     }
 }
+
+
 
 
