@@ -10,6 +10,8 @@ cmake_minimum_required(VERSION 3.4.1)
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 
+include_directories(include)
+
 add_library( # Sets the name of the library.
              native-lib
 
@@ -22,6 +24,7 @@ add_library( # Sets the name of the library.
             ArrayUtil.hpp
             SortUtil.hpp
             structdata/ArrayStack.hpp
+        question/hannuota.hpp
         )
 
 # Searches for a specified prebuilt library and stores the path as a

@@ -6,6 +6,7 @@
 #include "SortUtil.hpp"
 #include "structdata/ArrayStack.hpp"
 #include "structdata/LinkStack.hpp"
+#include "question/hannuota.hpp"
 
 void testArrayStack(){
     ArrayStack<int> stack;
@@ -92,6 +93,10 @@ void testSortMethod(){
     delete []arr5;
 }
 
+void testHannuota() {
+    hannuota(3,'A','B','C');
+}
+
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
         JNIEnv* env,
@@ -100,7 +105,8 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
 //    testLinkedList();
 //    testSortMethod();
 //    testArrayStack();
-        testLinkStack();
+//    testLinkStack();
+     testHannuota();
     return env->NewStringUTF(hello.c_str());
 }
 
