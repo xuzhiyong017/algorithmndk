@@ -188,11 +188,8 @@ void testTreeNode() {
 
     LOGE("----------层次遍历-------------");
     levelOrderTraverse(A,visitPNode);
-
-    LOGE("----------获取树的深度-------------");
-    int depth = getTreeDepth(A);
-    LOGE("----------获取树的深度 %d -------------",depth);
-    LOGE("----------是否是平衡二叉树%d -------------",isBalanceTree(A));
+    LOGE("----------获取树的深度 %d -------------",getTreeDepth(A));
+    LOGE("----------是否是平衡二叉树 %d -------------",isBalanceTree(A));
 }
 
 
