@@ -5,6 +5,8 @@
 #ifndef ALGORITHMNDK_SORTUTIL_HPP
 #define ALGORITHMNDK_SORTUTIL_HPP
 
+#include <__bit_reference>
+
 namespace SortUtil{
     //希尔排序，子排序也就是插入排序
     void shellInsertSort(int arr[],int len){
@@ -118,6 +120,42 @@ namespace SortUtil{
     //归并排序
 
 
+
+
+    //堆排序
+    /**
+     *
+     * @param arr
+     * @param k 当前的位置
+     * @param n 数组长度
+     */
+    void adjustHeap(int arr[],int k,int n){
+        while (2*k+1 < n){
+            int max = 2*k + 1;
+            if(max + 1 < n && arr[max + 1] > arr[max]){
+                max = max + 1;
+            }
+
+            if(arr[k] > arr[max]){
+                break;
+            }
+            std::swap(arr[k],arr[max]);
+            k = max;
+        }
+    }
+
+    void headSort(int arr[],int len){
+        //1.从最后一个不是叶子节点的节点，开始调整为大根堆
+        for (int i = len / 2 -1 ; i >= 0 ; --i) {
+            adjustHeap(arr,i,len);
+        }
+
+        //2.第一个与最后一个进行交换，然后再调整为大根堆，但不考虑最后一个了
+        for (int i = len-1; i > 0; i--) {
+            std::swap(arr[0],arr[i]);
+            adjustHeap(arr,0,i);
+        }
+    }
 }
 
 #endif //ALGORITHMNDK_SORTUTIL_HPP

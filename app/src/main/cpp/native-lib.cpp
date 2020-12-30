@@ -124,6 +124,12 @@ void testPriorityQueue() {
     }
 }
 
+void testHeadSort() {
+    int len = 10;
+    int* arr = ArrayUtil::create_random_data(len,0,10);
+    ArrayUtil::sort_array("headSort",SortUtil::headSort,arr, len);
+}
+
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
         JNIEnv* env,
@@ -135,7 +141,8 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
 //    testLinkStack();
 //     testHannuota();
 //        testTreeNode();
-        testPriorityQueue();
+//        testPriorityQueue();
+        testHeadSort();
     return env->NewStringUTF(hello.c_str());
 }
 
