@@ -9,6 +9,7 @@
 #include "question/hannuota.hpp"
 #include <queue>
 #include "tree/TreeNode.hpp"
+#include "tree/PriorityQueue.hpp"
 
 void testTreeNode();
 
@@ -20,7 +21,6 @@ void midOrderTraverse(TreeNode<char> *pNode,void(*visit)(T));
 
 template <typename T>
 void lastOrderTraverse(TreeNode<T> *pNode, void (*visit)(T));
-
 
 void testArrayStack(){
     ArrayStack<int> stack;
@@ -111,6 +111,19 @@ void testHannuota() {
     hannuota(3,'A','B','C');
 }
 
+void testPriorityQueue() {
+    int n = 10;
+    PriorityQueue<int> pQueue(n);
+    srand(time(NULL));
+    for (int i = 0; i < n; ++i) {
+        pQueue.push(rand() % 100);
+    }
+    LOGE("queue pop-------------");
+    while (!pQueue.isEmpty()){
+        LOGE("%d",pQueue.pop());
+    }
+}
+
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
         JNIEnv* env,
@@ -121,7 +134,8 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
 //    testArrayStack();
 //    testLinkStack();
 //     testHannuota();
-        testTreeNode();
+//        testTreeNode();
+        testPriorityQueue();
     return env->NewStringUTF(hello.c_str());
 }
 
@@ -171,6 +185,19 @@ bool isBalanceTree(TreeNode<char> *pNode) {
     return std::abs(left - right) <= 1 && isBalanceTree(pNode->left) && isBalanceTree(pNode->right);
 }
 
+TreeNode<char> * seralizeTree(char** tree) {
+    LOGE("字符串=%c",**tree);
+    if(**tree == '#'){
+        *tree+=1;
+        return NULL;
+    }
+    char * temp = *tree;
+    *tree += 1;
+    TreeNode<char> * node = new TreeNode<char>(*temp,seralizeTree(tree),seralizeTree(tree));
+    return node;
+}
+
+
 void testTreeNode() {
     TreeNode<char>* F = new TreeNode<char>('F',NULL,NULL);
     TreeNode<char>* E = new TreeNode<char>('E',NULL,NULL);
@@ -190,7 +217,11 @@ void testTreeNode() {
     levelOrderTraverse(A,visitPNode);
     LOGE("----------获取树的深度 %d -------------",getTreeDepth(A));
     LOGE("----------是否是平衡二叉树 %d -------------",isBalanceTree(A));
+
+    char * strTree = "ABD##E##C#F##";
+    seralizeTree(&strTree);
 }
+
 
 
 template <typename T>
