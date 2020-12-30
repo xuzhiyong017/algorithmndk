@@ -10,6 +10,7 @@
 #include <queue>
 #include "tree/TreeNode.hpp"
 #include "tree/PriorityQueue.hpp"
+#include "tree/BST.hpp"
 
 void testTreeNode();
 
@@ -130,6 +131,33 @@ void testHeadSort() {
     ArrayUtil::sort_array("headSort",SortUtil::headSort,arr, len);
 }
 
+void visit(int key,int value){
+    LOGE("key=%d,value=%d",key,value);
+}
+
+void testBSTree() {
+
+    BST<int,int>* bst = new BST<int,int>();
+
+    bst->put(2,2);
+    bst->put(-11,-11);
+    bst->put(-13,-13);
+    bst->put(0,0);
+    bst->put(8,8);
+    bst->put(3,3);
+    bst->put(7,7);
+
+    bst->remove(2);
+//    bst->remove(0);
+    bst->remove(10);
+
+    bst->inOrderTraverse(visit);
+
+
+//    LOGE("find data value=%d",bst->get(3));
+
+}
+
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
         JNIEnv* env,
@@ -142,7 +170,8 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
 //     testHannuota();
 //        testTreeNode();
 //        testPriorityQueue();
-        testHeadSort();
+//        testHeadSort();
+        testBSTree();
     return env->NewStringUTF(hello.c_str());
 }
 

@@ -27,6 +27,7 @@ add_library( # Sets the name of the library.
         question/hannuota.hpp
         tree/TreeNode.hpp
         tree/PriorityQueue.hpp
+        tree/BST.hpp
         )
 
 # Searches for a specified prebuilt library and stores the path as a
