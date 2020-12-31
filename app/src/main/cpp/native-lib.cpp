@@ -11,6 +11,7 @@
 #include "tree/TreeNode.hpp"
 #include "tree/PriorityQueue.hpp"
 #include "tree/BST.hpp"
+#include "tree/AVL.hpp"
 
 void testTreeNode();
 
@@ -158,6 +159,28 @@ void testBSTree() {
 
 }
 
+void testAVLTree() {
+    AVL<int,int>* bst = new AVL<int,int>();
+
+    bst->put(3,3);
+    bst->put(1,1);
+    bst->put(2,2);
+    bst->put(4,4);
+    bst->put(5,5);
+    bst->put(6,6);
+    bst->put(7,7);
+    bst->put(10,10);
+    bst->put(9,9);
+    bst->put(8,8);
+
+    bst->remove(4);
+    bst->remove(5);
+    bst->remove(2);
+//    bst->remove(1);
+
+    bst->levelOrderTraverse(visit);
+}
+
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
         JNIEnv* env,
@@ -171,7 +194,8 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
 //        testTreeNode();
 //        testPriorityQueue();
 //        testHeadSort();
-        testBSTree();
+//        testBSTree();
+        testAVLTree();
     return env->NewStringUTF(hello.c_str());
 }
 
