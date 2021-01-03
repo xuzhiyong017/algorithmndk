@@ -12,6 +12,7 @@
 #include "tree/PriorityQueue.hpp"
 #include "tree/BST.hpp"
 #include "tree/AVL.hpp"
+#include "tree/map.hpp"
 
 void testTreeNode();
 
@@ -136,6 +137,14 @@ void visit(int key,int value){
     LOGE("key=%d,value=%d",key,value);
 }
 
+void visitMapTree(int key,int value,bool isRed){
+    if(isRed){
+        LOGE("key=%d,value=%d,color=红",key,value);
+    }else{
+        LOGE("key=%d,value=%d,color=黑",key,value);
+    }
+}
+
 void testBSTree() {
 
     BST<int,int>* bst = new BST<int,int>();
@@ -181,6 +190,27 @@ void testAVLTree() {
     bst->levelOrderTraverse(visit);
 }
 
+void testMap() {
+    //测试红黑树
+    map<int,int>* bst = new map<int,int>();
+
+    bst->insert(3,3);
+    bst->insert(2,2);
+    bst->insert(1,1);
+    bst->insert(4,4);
+    bst->insert(5,5);
+    bst->insert(-5,-5);
+    bst->insert(-15,-15);
+    bst->insert(-10,-10);
+    bst->insert(6,6);
+    bst->insert(7,7);
+
+
+    LOGE("红黑树插入");
+    bst->levelOrderTraverse(visitMapTree);
+
+}
+
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
         JNIEnv* env,
@@ -195,7 +225,10 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
 //        testPriorityQueue();
 //        testHeadSort();
 //        testBSTree();
-        testAVLTree();
+//        testAVLTree();
+
+        testMap();
+
     return env->NewStringUTF(hello.c_str());
 }
 

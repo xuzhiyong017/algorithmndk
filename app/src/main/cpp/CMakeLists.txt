@@ -29,6 +29,7 @@ add_library( # Sets the name of the library.
         tree/PriorityQueue.hpp
         tree/BST.hpp
         tree/AVL.hpp
+        tree/map.hpp
         )
 
 # Searches for a specified prebuilt library and stores the path as a
