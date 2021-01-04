@@ -190,11 +190,173 @@ public:
         //双红修正
         solveDoubleRed(new_node);
 
+        count++;
         return iterator(new_node);
     }
 
-    bool remove(K key){
+    TreeNodeMap * findTree(K key){
+        TreeNodeMap * node = root;
+        while(node){
+            if(node->key > key){
+                node = node->left;
+            }else if(node->key < key){
+                node = node->right;
+            }else {
+                return node;
+            }
+        }
+        return NULL;
+    }
 
+
+    /**
+     * 分情况讨论下：
+
+        1.如果兄弟节点是红色的，把兄弟节点染黑，父节点染红，左/右旋父节点；
+        2.如果兄弟节点是黑色的，并且两个侄子节点都是黑色的，将兄弟节点染红，指针回溯至父亲节点；
+        3.如果兄弟节点是黑色，的并且远侄子是黑色的，近侄子是红色的，将进侄子染黑，兄弟染红，左/右旋兄弟节点，进入下面情况 4 ；
+        4.如果兄弟节点是黑色的，并且远侄子是红色的，近侄子随意，将兄弟节点染成父亲节点的颜色，父亲节点染黑，远侄子染黑，左/右旋父亲节点。
+
+     * @param pNode
+     */
+
+    //修正颜色
+    void sloveLostBlack(TreeNodeMap * pNode){
+        while (pNode != root && pNode->color == black){
+            if(left(parent(pNode)) == pNode){ //当前节点是父亲节点的左节点
+                TreeNodeMap * sib = brother(pNode);
+                if(getColor(sib) == red){ //情况1 想办法把兄弟节点变成黑色
+                    setColor(sib,black);
+                    setColor(parent(pNode),red);
+                    L_Rotation(parent(pNode));
+                    sib = brother(pNode);
+                }
+
+                if(getColor(left(sib)) == black && getColor(right(sib)) == black){ //情况2
+                    setColor(sib,red);
+                    pNode = parent(pNode);
+                }else{
+
+                    //情况3
+                    if(getColor(right(sib)) == black){
+                        setColor(sib,red);
+                        setColor(left(sib),black);
+                        R_Rotation(sib);
+                        //还有问题
+
+                        sib = brother(sib);
+                    }
+
+                    //情况4
+                    setColor(sib,getColor(parent(pNode)));
+                    setColor(parent(pNode),black);
+                    setColor(right(sib),black);
+
+                    L_Rotation(parent(pNode));
+
+                    //相当于两行代码，break，将根节点染黑
+                    pNode = root;
+                }
+            }else{ //当前节点是父亲的右节点
+
+                TreeNodeMap * sib = brother(pNode);
+                if(getColor(sib) == red){ //想办法把兄弟节点变成黑色
+                    setColor(sib,black);
+                    setColor(parent(pNode),red);
+                    R_Rotation(parent(pNode));
+                    sib = brother(pNode);
+                }
+
+                if(getColor(left(sib)) == black && getColor(right(sib)) == black){
+                    setColor(sib,red);
+                    pNode = parent(pNode);
+                }else{
+
+                    //情况3 远侄子是黑
+                    if(getColor(left(sib)) == black){
+                        setColor(sib,red);
+                        setColor(right(sib),black);
+                        L_Rotation(sib);
+                        //还有问题
+
+                        sib = brother(sib);
+                    }
+
+                    //情况4
+                    setColor(sib,getColor(parent(pNode)));
+                    setColor(parent(pNode),black);
+                    setColor(left(sib),black);
+
+                    R_Rotation(parent(pNode));
+
+                    //相当于两行代码，break，将根节点染黑
+                    pNode = root;
+                }
+            }
+        }
+        //当遇到一个红色节点，把红色节点染黑即可
+        pNode->color = black;
+    }
+
+    bool remove(K key){
+        TreeNodeMap * current = findTree(key);
+        if(current == NULL){
+            return false;
+        }
+
+        //左右子树都不为空
+        if(current->left != NULL && current->right != NULL){
+            TreeNodeMap * successor = current->successor();
+            current->key = successor->key;
+            current->value = successor->value;
+            current = successor;
+        }
+
+
+        TreeNodeMap * replace = current->left ? current->left : current->right;
+
+        //左右一个子树为空的情况
+        if(replace != NULL){
+
+            //父亲，current-parent 会不会有空的情况
+            if(current->parent == NULL) {
+                root = replace;
+            }else if(current->parent->left == current){
+                current->parent->left = replace;
+            }else{
+                current->parent->right = replace;
+            }
+
+            replace->parent = current->parent;
+
+            if(current->color == black){
+                sloveLostBlack(replace);
+            }
+            delete current;
+        }else if(current->parent == NULL){//删除根节点
+            delete root;
+            root = NULL;
+        }else{
+
+            //为什么把不先移除，是因为再修正的时候需要获取叔叔和侄子节点来分情况判断
+            //左右子树都是空并且当前节点是黑色，需要修正
+            if(current->color == black){
+                sloveLostBlack(current);
+            }
+
+            //再来移除
+            if(current->parent){
+                if(current->parent->left == current){
+                    current->parent->left = NULL;
+                }else{
+                    current->parent->right = NULL;
+                }
+            }
+            delete current;
+        }
+
+        count--;
+        return true;
     }
 
     int size(){

@@ -205,7 +205,7 @@ void testMap() {
     bst->insert(6,6);
     bst->insert(7,7);
 
-
+    bst->remove(2);
     LOGE("红黑树插入");
     bst->levelOrderTraverse(visitMapTree);
 
