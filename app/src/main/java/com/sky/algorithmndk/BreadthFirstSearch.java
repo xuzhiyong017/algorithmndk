@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity2 extends AppCompatActivity {
+public class BreadthFirstSearch extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +119,6 @@ public class MainActivity2 extends AppCompatActivity {
         matrix[8][8] = 0;
 
         Graph graph = new Graph(vertexSize,vertexes,matrix);
-        graph.breachSearch();
+        graph.breadthFirstSearch();
     }
 }

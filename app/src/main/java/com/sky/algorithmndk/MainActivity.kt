@@ -4,9 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
-import java.util.concurrent.ConcurrentHashMap
-import java.util.stream.Collectors
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,7 +14,8 @@ class MainActivity : AppCompatActivity() {
         // Example of a call to a native method
         sample_text.text = stringFromJNI()
 
-        startActivity(Intent(this,MainActivity2::class.java))
+//        startActivity(Intent(this, BreadthFirstSearch::class.java))
+        startActivity(Intent(this, PrimMinTree::class.java))
     }
 
     /**
