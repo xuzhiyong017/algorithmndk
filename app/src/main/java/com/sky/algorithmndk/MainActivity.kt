@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         sample_text.text = stringFromJNI()
 
 //        startActivity(Intent(this, BreadthFirstSearch::class.java))
-        startActivity(Intent(this, PrimMinTree::class.java))
+        startActivity(Intent(this, SlideMenuViewActivity::class.java))
     }
 
     /**
