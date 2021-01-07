@@ -1,10 +1,27 @@
 package com.sky.algorithmndk;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import butterknife.BindView;
+import butterknife.OnClick;
+
 public class PrimMinTree extends AppCompatActivity {
+
+
+    @BindView(R.id.text1)
+    TextView textView;
+
+    @BindView(R.id.text2)
+    TextView text2;
+
+    @OnClick(R.id.text2)
+    void start(){
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
