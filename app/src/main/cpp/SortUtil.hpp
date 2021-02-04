@@ -6,7 +6,7 @@
 #define ALGORITHMNDK_SORTUTIL_HPP
 
 #include <__bit_reference>
-
+#include "jlog.h"
 namespace SortUtil{
     //希尔排序，子排序也就是插入排序
     void shellInsertSort(int arr[],int len){
@@ -16,7 +16,9 @@ namespace SortUtil{
         while (increment > 0){
             for (i = 0; i < len; i+=increment) {
                  int tmp = arr[i];
-                for (j = i; j > 0 && arr[j-increment] > tmp; j-= increment) {
+                 j = i;
+                 LOGE("j-increament=%d",j-increment);
+                for (; j > 0 && arr[j-increment] > tmp; j-= increment) {
                     arr[j] = arr[j-increment];
                 }
                 arr[j] = tmp;

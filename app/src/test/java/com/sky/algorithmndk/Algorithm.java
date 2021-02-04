@@ -1,5 +1,7 @@
 package com.sky.algorithmndk;
 
+import java.util.Stack;
+
 /**
  * @author: xuzhiyong
  * @date: 21-1-5  下午3:48
@@ -51,6 +53,24 @@ public class Algorithm {
             }
         }
         return (int)res*negative;
+    }
+
+    public boolean isValid(String s) {
+        Stack<Character> path = new Stack<>();
+        for(int i = 0 ;i < s.length();i++){
+            if(s.charAt(i) == '{'){
+                path.push('}');
+            }else if(s.charAt(i) == '['){
+                path.push(']');
+            }else if(s.charAt(i) == '('){
+                path.push(')');
+            }else if(path.isEmpty() || ((char) path.peek()) != s.charAt(i)){
+                return false;
+            }else{
+                path.pop();
+            }
+        }
+        return path.isEmpty();
     }
 
 }

@@ -19,4 +19,10 @@ class ExampleUnitTest {
     fun testStringToInteger(){
         System.out.println(Algorithm().myAtoi(""))
     }
+
+
+    @Test
+    fun testIsValid(){
+        System.out.println(Algorithm().isValid("()[]{}"))
+    }
 }

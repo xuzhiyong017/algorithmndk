@@ -217,7 +217,7 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
         jobject /* this */) {
     std::string hello = "Hello from C++";
 //    testLinkedList();
-//    testSortMethod();
+    testSortMethod();
 //    testArrayStack();
 //    testLinkStack();
 //     testHannuota();
@@ -227,7 +227,7 @@ Java_com_sky_algorithmndk_MainActivity_stringFromJNI(
 //        testBSTree();
 //        testAVLTree();
 
-        testMap();
+//        testMap();
 
     return env->NewStringUTF(hello.c_str());
 }
