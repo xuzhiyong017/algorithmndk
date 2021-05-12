@@ -25,4 +25,21 @@ class ExampleUnitTest {
     fun testIsValid(){
         System.out.println(Algorithm().isValid("()[]{}"))
     }
+
+   @Test
+    fun testMaxSum(){
+       var a = intArrayOf(-4,4,-3,3,-4,-1,8,-7,-7);
+       var k = 3
+        System.out.println(Algorithm().largestSumAfterKNegations(a,k))
+    }
+
+    @Test
+    fun testPartitionLabels(){
+        System.out.println(Algorithm().partitionLabels("vhaagbqkaq"))
+    }
+
+    @Test
+    fun testMaxValue(){
+        Algorithm().maxValue
+    }
 }
