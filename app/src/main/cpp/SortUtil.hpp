@@ -94,6 +94,7 @@ namespace SortUtil{
 
            if(low < high){
                arr[high] = arr[low];
+
                high--;
            }
        }

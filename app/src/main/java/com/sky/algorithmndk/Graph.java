@@ -3,6 +3,7 @@ package com.sky.algorithmndk;
 import android.util.Log;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
 
 /**
  * @author: xuzhiyong
@@ -40,27 +41,44 @@ public class Graph {
     public void breadthFirstSearch() {
         //记录是否访问过
         boolean[] visited = new boolean[vertexSize];
+        int[] dis = new int[vertexSize];
+        int[] path = new int[vertexSize];
         ArrayDeque<Integer> deque = new ArrayDeque<>();
         //从节点3开始广度遍历
         deque.push(vertexes[3]);
+        for (int i = 0; i < vertexSize; i++) {
+            if(i != 3){
+                dis[i] = path[i] = -1;
+            }
+        }
         while (!deque.isEmpty()){
             //访问节点
             int element = deque.removeFirst();
             //这里节点值跟数组下标一样就不用查找了
             int index = element;
-            if(!visited[index]){
-                Log.d("Graph",element+"");
-                visited[index] = true;
-
-                for (int i = 0; i < vertexSize; i++) {
-                    if(matrix[index][i] == 1 && !visited[i]){
-                        deque.addLast(vertexes[i]);
-                    }
+            for (int i = 0; i < vertexSize; i++) {
+                if(dis[i] == -1 && matrix[index][i] == 1){
+                    dis[i] = dis[index] + 1;
+                    path[i] = index;
+                    deque.addLast(vertexes[i]);
                 }
-
             }
+
+//            if(!visited[index]){
+//                System.out.println("Graph "+ element+"");
+//                visited[index] = true;
+//
+//                for (int i = 0; i < vertexSize; i++) {
+//                    if(matrix[index][i] == 1 && !visited[i]){
+//                        deque.addLast(vertexes[i]);
+//                    }
+//                }
+//
+//            }
         }
 
+        //dis该算法的本质是BFS，以源点为起始点不断向外“渗透”。
+        System.out.println(Arrays.toString(path));
     }
 
     //普利姆算法
@@ -85,7 +103,7 @@ public class Graph {
         for (int j = 0; j < vertexSize; j++) {
             builder.append(lowcost[j]).append(",");
         }
-        Log.d("TAG", "primMinTree: 第一次的比较"+builder.toString());
+        System.out.println("primMinTree: 第一次的比较"+builder.toString());
 
         //
         int sum = 0;
@@ -100,7 +118,7 @@ public class Graph {
                 }
             }
 
-            Log.d("TAG", "primMinTree: 找到村庄"+vertexes[minId]+",修路距离="+min);
+            System.out.println("primMinTree: 找到村庄"+vertexes[minId]+",修路距离="+min);
             lowcost[minId] = 0;
             sum += min;
 
@@ -115,10 +133,10 @@ public class Graph {
             for (int j = 0; j < vertexSize; j++) {
                 builder1.append(lowcost[j]).append(",");
             }
-            Log.d("TAG", "primMinTree: 每一次的比较"+builder1.toString());
+            System.out.println("primMinTree: 每一次的比较"+builder1.toString());
 
         }
-        Log.d("TAG", "primMinTree: 最短的路径是sum="+sum);
+        System.out.println("primMinTree: 最短的路径是sum="+sum);
     }
 
     /**
@@ -149,7 +167,7 @@ public class Graph {
 
             for (int j = 0; j < vertexSize; j++) {
                 if(!isPath[j] && shortPath[j] < min){
-                     min =shortPath[j];
+                     min = shortPath[j];
                      minId = j;
                 }
             }

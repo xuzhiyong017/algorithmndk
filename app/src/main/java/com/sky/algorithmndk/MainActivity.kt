@@ -1,5 +1,6 @@
 package com.sky.algorithmndk
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Debug
 import android.util.Log
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         // Example of a call to a native method
 //        sample_text.text = stringFromJNI()
-//        startActivity(Intent(this, BreadthFirstSearch::class.java))
+        startActivity(Intent(this, BreadthFirstSearch::class.java))
 //        startActivity(Intent(this, SlideMenuViewActivity::class.java))
 //        var cur = System.currentTimeMillis()
 //        Log.d("MyApplication","onCreate "+ (cur - time) +"  cur="+cur)
