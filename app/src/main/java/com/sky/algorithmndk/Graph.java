@@ -79,6 +79,7 @@ public class Graph {
 
         //dis该算法的本质是BFS，以源点为起始点不断向外“渗透”。
         System.out.println(Arrays.toString(path));
+        System.out.println(Arrays.toString(dis));
     }
 
     //普利姆算法
@@ -173,7 +174,7 @@ public class Graph {
             }
 
             isPath[minId] = true;
-            Log.d("TAG", "djstlaMinTree: 找到顶点="+minId+"最短路径长度="+shortPath[minId]);
+            System.out.println("djstlaMinTree: 找到顶点="+minId+"最短路径长度="+shortPath[minId]);
 
             for (int k = 0; k < vertexSize; k++) {
                 if(!isPath[k] && (min+matrix[minId][k]) < shortPath[k]){
@@ -185,7 +186,7 @@ public class Graph {
             for (int k = 0; k < vertexSize; k++) {
                 builder1.append(shortPath[k]).append(",");
             }
-            Log.d("TAG", "djstlaMinTree: 每一次的比较"+builder1.toString());
+            System.out.println("djstlaMinTree: 每一次的比较"+builder1.toString());
         }
 
     }

@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
@@ -25,6 +27,20 @@ public class Algorith {
     public static void main(String[] args) {
         new Algorith().GetLeastNumbers_Solution(new int[]{4,5,1,6,2,7,3,8},2);
     }
+
+    public  List<List<Integer>> twoSumV2(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        List<List<Integer>> resultList = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            int other = target - nums[i];
+            if (map.containsKey(other)) {
+                resultList.add(Arrays.asList(map.get(other),i));
+            }
+            map.put(nums[i], i);
+        }
+        return resultList;
+    }
+
 
     public ArrayList<Integer> GetLeastNumbers_Solution(int [] input, int k) {
         ArrayList<Integer> res = new ArrayList<>();
@@ -479,6 +495,6 @@ public class Algorith {
         //普利姆算法
         graph.primMinTree();
         //迪杰思特拉算法
-//        graph.djstlaMinTree();
+        graph.djstlaMinTree();
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Debug
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,10 +17,22 @@ class MainActivity : AppCompatActivity() {
 
         // Example of a call to a native method
 //        sample_text.text = stringFromJNI()
-        startActivity(Intent(this, BreadthFirstSearch::class.java))
+//        startActivity(Intent(this, BreadthFirstSearch::class.java))
+        startActivity(Intent(this, LifeCycleActivity::class.java))
 //        startActivity(Intent(this, SlideMenuViewActivity::class.java))
 //        var cur = System.currentTimeMillis()
 //        Log.d("MyApplication","onCreate "+ (cur - time) +"  cur="+cur)
+        sample_text.post {
+            Log.d("ChildView","post runnable")
+        }
+
+        root_layout.setOnClickListener {
+            Log.d("ChildView","click root_layout")
+        }
+
+        sample_text.setOnClickListener {
+            Log.d("ChildView","click sample_text")
+        }
     }
 
     override fun onResume() {

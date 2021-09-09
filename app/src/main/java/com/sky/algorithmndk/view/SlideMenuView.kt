@@ -1,6 +1,7 @@
 package com.sky.algorithmndk.view
 
 import android.content.Context
+import android.graphics.Canvas
 import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.util.Log
@@ -96,14 +97,25 @@ class SlideMenuView :ViewGroup{
         measureChild(menuView,widthMeasureSpec,heightMeasureSpec)
         measureChild(contentView,widthMeasureSpec,heightMeasureSpec)
 
+        Log.d("SlideMenuView","onMeasure")
         setMeasuredDimension(mMenuWidth + mContentWidth,mScreenHeight)
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         menuView.layout(-mMenuWidth,0,0,mScreenHeight);
         contentView.layout(0,0,mScreenWidth,mScreenHeight);
+        Log.d("SlideMenuView","onLayout")
     }
 
+    override fun onDraw(canvas: Canvas?) {
+        super.onDraw(canvas)
+        Log.d("SlideMenuView","onDraw")
+    }
+
+    override fun draw(canvas: Canvas?) {
+        super.draw(canvas)
+        Log.d("SlideMenuView","draw")
+    }
 
     var lastX = 0.0f;
 

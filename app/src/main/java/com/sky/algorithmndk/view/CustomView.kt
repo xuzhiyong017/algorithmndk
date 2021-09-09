@@ -1,7 +1,9 @@
 package com.sky.algorithmndk.view
 
 import android.content.Context
+import android.graphics.Canvas
 import android.util.AttributeSet
+import android.util.Log
 import android.view.ViewGroup
 
 /**
@@ -32,5 +34,16 @@ class CustomView : ViewGroup {
         r: Int,
         b: Int
     ) {
+
     }
+
+    override fun onDraw(canvas: Canvas?) {
+        super.onDraw(canvas)
+    }
+
+    override fun getMinimumWidth(): Int {
+        measuredHeight
+        return super.getMinimumWidth()
+    }
+
 }

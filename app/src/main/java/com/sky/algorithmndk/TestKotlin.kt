@@ -45,8 +45,10 @@ fun main() {
 //    Algorith().maxWater(intArrayOf(4,5,1,3,2))
 
 //    Algorith().reverseKGroup(listNode,3)
-//    Algorith().testBreadThFirstSearch()
-    Algorith().testPrimMinTree()
+    Algorith().testBreadThFirstSearch()
+//    Algorith().testPrimMinTree()
+
+//    Algorith().twoSumV2(intArrayOf(0,6,2,7,5,6,9,10,15),8)
 
 
 }

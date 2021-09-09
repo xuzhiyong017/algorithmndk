@@ -29,6 +29,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".SecondPageActivity"
+            android:exported="true"
+            android:theme="@style/DK.Theme.Translucent"/>
+        <activity
+            android:name=".LifeCycleActivity"
+            android:exported="true" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,9 +48,7 @@
         <activity
             android:name=".PrimMinTree"
             android:process=":test" />
-        <activity android:name=".MainActivity">
-
-        </activity> <!-- 云信后台服务，请使用独立进程。 -->
+        <activity android:name=".MainActivity" /> <!-- 云信后台服务，请使用独立进程。 -->
         <service
             android:name="com.netease.nimlib.service.NimService"
             android:process=":core" /> <!-- 云信后台辅助服务 -->
